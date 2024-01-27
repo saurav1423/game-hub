@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../services/api-client';
 
-const useData = (endpoint) => {
+const useData = (endpoint, requestConfig, deps) => {
  
  const [data, setData] = useState([]);
  const [error, setError] = useState('');
@@ -10,7 +10,7 @@ const useData = (endpoint) => {
  useEffect(() => {
 
    setLoading(true)
-   apiClient.get(endpoint)
+   apiClient.get(endpoint, requestConfig)
     .then(res => {
         setData(res.data.results)
         console.log(res.data.results)
@@ -21,7 +21,7 @@ const useData = (endpoint) => {
       setLoading(false)
     })
  
- },[])
+ },deps?[...deps] : [])
 
  return {data, error, loading}
 
