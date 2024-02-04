@@ -10,8 +10,9 @@ function App() {
 
   // const [selectedGenre, setSelectedGenre] = useState(null)
   // const [selectedPlatform, setSelectedPlatform] = useState(null)
-  const [gameQuery, setGameQuery] = useState({selectedGenre: null, selectedPlatform: null, sortOrder: ''})
+  const [gameQuery, setGameQuery] = useState({selectedGenre: null, selectedPlatform: null, sortOrder: '', searchValue: ''})
 
+   console.log(gameQuery.searchValue)
   return (
     <>
       <Grid
@@ -25,7 +26,7 @@ function App() {
         }}
       >
           <GridItem area="nav">
-            <Navbar />
+            <Navbar onSearch={(searchValue) => setGameQuery({...gameQuery, searchValue})} />
           </GridItem>
           <Show above="lg">
             <GridItem area="aside" paddingX={5} marginY={9}>
